@@ -12,6 +12,7 @@
     "lint": "next lint",
     "lint-fix": "next lint --fix"
   },
+  "proxy": "http://localhost:5000",
   "dependencies": {
     "@emotion/cache": "11.10.3",
     "@emotion/react": "11.10.4",

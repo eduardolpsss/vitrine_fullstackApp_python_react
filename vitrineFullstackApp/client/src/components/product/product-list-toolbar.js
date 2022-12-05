@@ -11,6 +11,7 @@ import {
 import { Download as DownloadIcon } from '../../icons/download';
 import { Search as SearchIcon } from '../../icons/search';
 import { Upload as UploadIcon } from '../../icons/upload';
+import NextLink from 'next/link'
 
 export const ProductListToolbar = (props) => (
   <Box {...props}>
@@ -29,16 +30,22 @@ export const ProductListToolbar = (props) => (
       >
         Carros usados
       </Typography>
-      {/* <Box sx={{ m: 1 }}>
-        <Button
-          color="primary"
-          variant="contained"
+      <Box sx={{ m: 1 }}>
+        <NextLink
+        href="/registerCars"
+        passHref
         >
-          Adicionar carros
-        </Button>
-      </Box> */}
+          <Button
+            // disabled
+            color="primary"
+            variant="contained"
+          >
+            Adicionar carros
+          </Button>
+      </NextLink>
+      </Box>
     </Box>
-    <Box sx={{ mt: 3 }}>
+    {/* <Box sx={{ mt: 3 }}>
       <Card>
         <CardContent>
           <Box sx={{ maxWidth: 500 }}>
@@ -46,6 +53,6 @@ export const ProductListToolbar = (props) => (
           </Box>
         </CardContent>
       </Card>
-    </Box>
+    </Box> */}
   </Box>
 );

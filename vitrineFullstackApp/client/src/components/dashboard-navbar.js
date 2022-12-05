@@ -59,23 +59,7 @@ export const DashboardNavbar = (props) => {
               </Box>
               </IconButton>
           </Box>
-          <Box sx={{ flexGrow: 1 }} />
-          {/* <Tooltip title="Contacts">
-            <IconButton sx={{ ml: 1 }}>
-              <UsersIcon fontSize="small" />
-            </IconButton>
-          </Tooltip> */}
-          {/* <Tooltip title="Notifications">
-            <IconButton sx={{ ml: 1 }}>
-              <Badge
-                badgeContent={4}
-                color="primary"
-                variant="dot"
-              >
-                <BellIcon fontSize="small" />
-              </Badge>
-            </IconButton>
-          </Tooltip> */}
+          {/* <Box sx={{ flexGrow: 1 }} />
           <Avatar
             onClick={() => setOpenAccountPopover(true)}
             ref={settingsRef}
@@ -88,7 +72,7 @@ export const DashboardNavbar = (props) => {
             src="/static/images/avatars/avatar_1.png"
           >
             <UserCircleIcon fontSize="small" />
-          </Avatar>
+          </Avatar> */}
         </Toolbar>
       </DashboardNavbarRoot>
       <AccountPopover

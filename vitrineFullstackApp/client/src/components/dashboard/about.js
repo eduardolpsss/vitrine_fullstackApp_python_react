@@ -1,9 +1,7 @@
 import { Bar } from 'react-chartjs-2';
 import { Box, Button, Card, CardContent, CardHeader, Divider, useTheme } from '@mui/material';
-import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
-import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 
-export const Sales = (props) => {
+export const About = (props) => {
   const theme = useTheme();
 
   const data = {
@@ -84,46 +82,12 @@ export const Sales = (props) => {
   return (
     <Card {...props}>
       <CardHeader
-        action={(
-          <Button
-            endIcon={<ArrowDropDownIcon fontSize="small" />}
-            size="small"
-          >
-            Last 7 days
-          </Button>
-        )}
-        title="Latest Sales"
+        title="Sobre"
       />
       <Divider />
       <CardContent>
-        <Box
-          sx={{
-            height: 400,
-            position: 'relative'
-          }}
-        >
-          <Bar
-            data={data}
-            options={options}
-          />
-        </Box>
+        <p>RESTful API Fullstack desenvolvido utilizando Python no back-end, o microframework Flask provê um built-in development server. O front-end foi desenvolvido com React.</p>
       </CardContent>
-      <Divider />
-      <Box
-        sx={{
-          display: 'flex',
-          justifyContent: 'flex-end',
-          p: 2
-        }}
-      >
-        <Button
-          color="primary"
-          endIcon={<ArrowRightIcon fontSize="small" />}
-          size="small"
-        >
-          Overview
-        </Button>
-      </Box>
     </Card>
   );
 };

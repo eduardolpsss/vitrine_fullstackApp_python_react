@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import { Avatar, Box, Card, CardContent, Divider, Grid, Typography } from '@mui/material';
 import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 
-export const ProductCard = ({ product, ...rest }) => (
+export const CarCard = ({ car, ...rest }) => (
   <Card
     sx={{
       display: 'flex',
@@ -20,9 +20,10 @@ export const ProductCard = ({ product, ...rest }) => (
         }}
       >
         <Avatar
-          alt="Product"
-          src={product.media}
+          alt="Car"
+          src={car.media}
           variant="square"
+          sx={{width: 300, height: 300}}
         />
       </Box>
 
@@ -32,15 +33,15 @@ export const ProductCard = ({ product, ...rest }) => (
         gutterBottom
         variant="h5"
       >
-        {product.title}
+        {car.title}
       </Typography>
       
       <Typography
         align="center"
-        color="textPrimary"
+        color="textSecondary"
         variant="body1"
       >
-        {product.description}
+        {car.year} • {car.kilometre}km • {car.city}
       </Typography>
     </CardContent>
 
@@ -61,14 +62,14 @@ export const ProductCard = ({ product, ...rest }) => (
             display: 'flex'
           }}
         >
-          <AttachMoneyIcon color="action" />
+          <AttachMoneyIcon color='success' />
           <Typography
             color="textSecondary"
             display="inline"
-            sx={{ pl: 1 }}
+            sx={{ pl: 0 }}
             variant="body2"
           >
-            58.699 {/* {product.preco} */}
+            <h3>{car.price}</h3>
           </Typography>
         </Grid>
       </Grid>
@@ -76,6 +77,6 @@ export const ProductCard = ({ product, ...rest }) => (
   </Card>
 );
 
-ProductCard.propTypes = {
-  product: PropTypes.object.isRequired
+CarCard.propTypes = {
+  car: PropTypes.object.isRequired
 };
