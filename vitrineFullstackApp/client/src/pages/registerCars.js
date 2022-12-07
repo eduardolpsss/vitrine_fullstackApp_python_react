@@ -6,10 +6,7 @@ import * as Yup from 'yup';
 import {
   Box,
   Button,
-  Checkbox,
   Container,
-  FormHelperText,
-  Link,
   TextField,
   Typography,
   Card,
@@ -21,42 +18,65 @@ import { DashboardLayout } from '../components/dashboard-layout';
 const Page = () => {
   const formik = useFormik({
     initialValues: {
-      email: '',
-      firstName: '',
-      lastName: '',
-      password: '',
-      policy: false
+      kilometre: '',
+      title: '',
+      year: '',
+      city: '',
+      price: ''
+
     },
     validationSchema: Yup.object({
-      email: Yup
-        .string()
-        .email('Must be a valid email')
-        .max(255)
-        .required(
-          'Email is required'),
-      firstName: Yup
+      kilometre: Yup
         .string()
         .max(255)
-        .required('First name is required'),
-      lastName: Yup
+        .required('É necessário informar a kilometragem do veículo'),
+      title: Yup
         .string()
         .max(255)
-        .required('Last name is required'),
-      password: Yup
+        .required('É necessário informar um título para o anúncio'),
+      year: Yup
         .string()
         .max(255)
-        .required('Password is required'),
-      policy: Yup
-        .boolean()
-        .oneOf(
-          [true],
-          'This field must be checked'
-        )
+        .required('É necessário informar o ano do veículo'),
+      city: Yup
+        .string()
+        .max(255)
+        .required('É necessário informar o local onde o veículo se encontra'),
+      price: Yup
+        .string()
+        .max(255)
+        .required('É necessário informar o preço do veículo')
     }),
-    onSubmit: () => {
-      Router
-        .push('/')
-        .catch(console.error);
+    onSubmit: async () => {
+      let title = formik.values.title
+      let year = formik.values.year
+      let kilometre = formik.values.kilometre
+      let city = formik.values.city
+      let price = formik.values.price
+
+      console.log(`Nome passado para o anúncio: ${title}`)
+      console.log(`Ano passado para o anúncio: ${year}`)
+      console.log(`Kilometragem passada para o anúncio: ${kilometre}`)
+      console.log(`Cidade passada para o anúncio: ${city}`)
+      console.log(`Preço passado para o anúncio: ${price}`)
+
+      axios.post(`http://localhost:5000/cars`, {
+        title: title,
+        year: year,
+        kilometre: kilometre,
+        city: city,
+        price: price
+      }).then(response => {
+        alert("Anuncio criado com sucesso!")
+        window.location.reaload();
+      })
+      .catch(error => {
+        if (error.response.data) {
+          alert(`$(error.response.data.mensage)`)
+          console.log(error.response.data)
+          window.location.reaload();
+        }
+      })
     }
   });
 
@@ -107,84 +127,77 @@ const Page = () => {
                 </Typography>
               </Box>
               
-              {/* First name (firstName) -> Título do anúncio (title) */}
+              {/* Título do anúncio (title) */}
               <TextField
-                error={Boolean(formik.touched.firstName && formik.errors.firstName)}
+                error={Boolean(formik.touched.title && formik.errors.title)}
                 fullWidth
-                helperText={formik.touched.firstName && formik.errors.firstName}
+                helperText={formik.touched.title && formik.errors.title}
                 label="Título do anúncio"
                 margin="normal"
-                name="firstName"
+                name="title"
                 onBlur={formik.handleBlur}
                 onChange={formik.handleChange}
-                value={formik.values.firstName}
+                value={formik.values.title}
                 variant="outlined"
               />
 
-              {/* Lasr name (lastName) -> Ano do veículo (year) */}
+              {/* Ano do veículo (year) */}
               <TextField
-                error={Boolean(formik.touched.lastName && formik.errors.lastName)}
+                error={Boolean(formik.touched.year && formik.errors.year)}
                 fullWidth
-                helperText={formik.touched.lastName && formik.errors.lastName}
+                helperText={formik.touched.year && formik.errors.year}
                 label="Ano do veículo"
                 margin="normal"
-                name="lastName"
+                name="year"
                 onBlur={formik.handleBlur}
                 onChange={formik.handleChange}
-                value={formik.values.lastName}
+                value={formik.values.year}
                 variant="outlined"
               />
 
-              {/* Endereço de e-mail (email) -> Kilometragem do veículo (kilometre) */}
+              {/* Kilometragem do veículo (kilometre) */}
               <TextField
-                error={Boolean(formik.touched.email && formik.errors.email)}
+                error={Boolean(formik.touched.kilometre && formik.errors.kilometre)}
                 fullWidth
-                helperText={formik.touched.email && formik.errors.email}
+                helperText={formik.touched.kilometre && formik.errors.kilometre}
                 label="Kilometragem do veículo"
                 margin="normal"
-                name="email"
+                name="kilometre"
                 onBlur={formik.handleBlur}
                 onChange={formik.handleChange}
-                type="email"
-                value={formik.values.email}
+                value={formik.values.kilometre}
                 variant="outlined"
               />
 
-              {/* Senha (password) -> Local onde o veículo se encontra (city)*/}
+              {/* Local onde o veículo se encontra (city)*/}
               <TextField
-                error={Boolean(formik.touched.password && formik.errors.password)}
+                error={Boolean(formik.touched.city && formik.errors.city)}
                 fullWidth
-                helperText={formik.touched.password && formik.errors.password}
+                helperText={formik.touched.city && formik.errors.city}
                 label="Local onde o veículo se encontra"
                 margin="normal"
-                name="password"
+                name="city"
                 onBlur={formik.handleBlur}
                 onChange={formik.handleChange}
-                type="password"
-                value={formik.values.password}
+                value={formik.values.city}
                 variant="outlined"
               />
 
               {/* Preço do veículo (price)*/}
               <TextField
-                error={Boolean(formik.touched.password && formik.errors.password)}
+                error={Boolean(formik.touched.price && formik.errors.price)}
                 fullWidth
-                helperText={formik.touched.password && formik.errors.password}
+                helperText={formik.touched.price && formik.errors.price}
                 label="Preço do veículo"
                 margin="normal"
-                name="password"
+                name="price"
                 onBlur={formik.handleBlur}
                 onChange={formik.handleChange}
-                type="password"
-                value={formik.values.password}
+                type="price"
+                value={formik.values.price}
                 variant="outlined"
               />
               
-              {Boolean(formik.touched.policy && formik.errors.policy) && (
-                <FormHelperText error>
-                  {formik.errors.policy}
-                </FormHelperText>
-              )}
               <Box sx={{ py: 2 }}>
                 <Button
                   color="primary"
