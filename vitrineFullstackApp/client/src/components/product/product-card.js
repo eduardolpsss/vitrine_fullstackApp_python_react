@@ -67,9 +67,9 @@ export const CarCard = ({ car, ...rest }) => (
             color="textSecondary"
             display="inline"
             sx={{ pl: 0 }}
-            variant="body2"
+            variant="body1"
           >
-            <h3>{car.price}</h3>
+            {car.price}
           </Typography>
         </Grid>
       </Grid>
