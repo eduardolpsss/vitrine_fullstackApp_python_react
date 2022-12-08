@@ -43,10 +43,10 @@ function Page(props) {
                         container
                         spacing={3}
                     >
-                        {(typeof data.cars === 'undefined')? (
+                        {(typeof data === 'undefined')? (
                             <p>Loading...</p>
                         ): (
-                            data.cars.map((car, i) =>(
+                            data.map((car, i) =>(
                             <Grid
                                 item
                                 key={car._id}
