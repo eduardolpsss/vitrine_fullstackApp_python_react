@@ -1,3 +1,4 @@
+import React, {useState} from 'react';
 import Head from 'next/head';
 import NextLink from 'next/link';
 import Router from 'next/router';
@@ -16,6 +17,14 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { DashboardLayout } from '../components/dashboard-layout';
 
 const Page = () => {
+
+  const [media, setMedia] = useState('')
+  const [title, setTitle] = useState('')
+  const [year, setYear] = useState('')
+  const [kilometre, setKilometre] = useState('')
+  const [city, setCity] = useState('')
+  const [price, setPrice] = useState('')
+
   const formik = useFormik({
     initialValues: {
       kilometre: '',
@@ -23,62 +32,57 @@ const Page = () => {
       year: '',
       city: '',
       price: ''
-
     },
     validationSchema: Yup.object({
-      kilometre: Yup
-        .string()
-        .max(255)
-        .required('É necessário informar a kilometragem do veículo'),
       title: Yup
         .string()
         .max(255)
-        .required('É necessário informar um título para o anúncio'),
-      year: Yup
+        .required('É necessário informar um título para o anúncio.'),
+        year: Yup
+          .string()
+          .max(255)
+          .required('É necessário informar o ano do veículo.'),
+      kilometre: Yup
         .string()
         .max(255)
-        .required('É necessário informar o ano do veículo'),
+        .required('É necessário informar a kilometragem do veículo.'),
       city: Yup
         .string()
         .max(255)
-        .required('É necessário informar o local onde o veículo se encontra'),
+        .required('É necessário informar o local onde o veículo se encontra.'),
       price: Yup
         .string()
         .max(255)
-        .required('É necessário informar o preço do veículo')
-    }),
-    onSubmit: async () => {
-      let title = formik.values.title
-      let year = formik.values.year
-      let kilometre = formik.values.kilometre
-      let city = formik.values.city
-      let price = formik.values.price
+        .required('É necessário informar o preço do veículo.')
+    })
+  })
 
-      console.log(`Nome passado para o anúncio: ${title}`)
-      console.log(`Ano passado para o anúncio: ${year}`)
-      console.log(`Kilometragem passada para o anúncio: ${kilometre}`)
-      console.log(`Cidade passada para o anúncio: ${city}`)
-      console.log(`Preço passado para o anúncio: ${price}`)
+  const handleSubmit = async (e) => {
+    e.preventDefault()
 
-      axios.post(`http://localhost:5000/cars`, {
-        title: title,
-        year: year,
-        kilometre: kilometre,
-        city: city,
-        price: price
-      }).then(response => {
-        alert("Anuncio criado com sucesso!")
-        window.location.reaload();
+    const res = await fetch("http://localhost:5000/cars", {
+      method: "POST",
+      
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        media,
+        title,
+        year,
+        kilometre,
+        city,
+        price
       })
-      .catch(error => {
-        if (error.response.data) {
-          alert(`$(error.response.data.mensage)`)
-          console.log(error.response.data)
-          window.location.reaload();
-        }
-      })
-    }
-  });
+    })
+
+    alert("Anúncio criado com sucesso!")
+    
+    const data = await res.json();
+    console.log(data)
+
+    window.location.reload(true);
+  }
 
   return (
     <>
@@ -98,7 +102,7 @@ const Page = () => {
       >
         <Container maxWidth="sm">
           <NextLink
-            href="/usedCars"
+            href="/adminPage"
             passHref
           >
             <Button
@@ -108,109 +112,131 @@ const Page = () => {
               Voltar
             </Button>
           </NextLink>
+          
           <Card>
             <CardContent>
-              <form onSubmit={formik.handleSubmit}>
-              <Box sx={{ my: 3 }}>
-                <Typography
-                  color="textPrimary"
-                  variant="h4"
-                >
-                  Cadastro de carros usados
-                </Typography>
-                <Typography
-                  color="textSecondary"
-                  gutterBottom
-                  variant="body2"
-                >
-                  Insira as informações para cadastrar um veículo.
-                </Typography>
-              </Box>
-              
-              {/* Título do anúncio (title) */}
-              <TextField
-                error={Boolean(formik.touched.title && formik.errors.title)}
-                fullWidth
-                helperText={formik.touched.title && formik.errors.title}
-                label="Título do anúncio"
-                margin="normal"
-                name="title"
-                onBlur={formik.handleBlur}
-                onChange={formik.handleChange}
-                value={formik.values.title}
-                variant="outlined"
-              />
+              <form onSubmit={handleSubmit}>
+                <div className='form-group'>
+                  <Box sx={{ my: 3 }}>
+                    <Typography
+                      color="textPrimary"
+                      variant="h4"
+                    >
+                      Cadastro de carros usados
+                    </Typography>
+                    <Typography
+                      color="textSecondary"
+                      gutterBottom
+                      variant="body2"
+                    >
+                      Insira as informações para cadastrar um veículo.
+                    </Typography>
+                  </Box>
 
-              {/* Ano do veículo (year) */}
-              <TextField
-                error={Boolean(formik.touched.year && formik.errors.year)}
-                fullWidth
-                helperText={formik.touched.year && formik.errors.year}
-                label="Ano do veículo"
-                margin="normal"
-                name="year"
-                onBlur={formik.handleBlur}
-                onChange={formik.handleChange}
-                value={formik.values.year}
-                variant="outlined"
-              />
+                  {/* Media anúncio (media) */}
+                  <TextField
+                    error={Boolean(formik.touched.title && formik.errors.media)}
+                    fullWidth
+                    helperText={formik.touched.title && formik.errors.media}
+                    onBlur={formik.handleBlur}
+                    label="URL de mídia"
+                    margin="normal"
+                    name="media"
+                    onChange={e => setMedia(e.target.value)}
+                    value={media}
+                    variant="outlined"
+                    className='form-control'
+                  />                  
 
-              {/* Kilometragem do veículo (kilometre) */}
-              <TextField
-                error={Boolean(formik.touched.kilometre && formik.errors.kilometre)}
-                fullWidth
-                helperText={formik.touched.kilometre && formik.errors.kilometre}
-                label="Kilometragem do veículo"
-                margin="normal"
-                name="kilometre"
-                onBlur={formik.handleBlur}
-                onChange={formik.handleChange}
-                value={formik.values.kilometre}
-                variant="outlined"
-              />
+                  {/* Título do anúncio (title) */}
+                  <TextField
+                    error={Boolean(formik.touched.title && formik.errors.title)}
+                    fullWidth
+                    helperText={formik.touched.title && formik.errors.title}
+                    onBlur={formik.handleBlur}
+                    label="Título do anúncio"
+                    margin="normal"
+                    name="title"
+                    onChange={e => setTitle(e.target.value)}
+                    value={title}
+                    variant="outlined"
+                    className='form-control'
+                  />
 
-              {/* Local onde o veículo se encontra (city)*/}
-              <TextField
-                error={Boolean(formik.touched.city && formik.errors.city)}
-                fullWidth
-                helperText={formik.touched.city && formik.errors.city}
-                label="Local onde o veículo se encontra"
-                margin="normal"
-                name="city"
-                onBlur={formik.handleBlur}
-                onChange={formik.handleChange}
-                value={formik.values.city}
-                variant="outlined"
-              />
+                  {/* Ano do veículo (year) */}
+                  <TextField
+                    error={Boolean(formik.touched.year && formik.errors.year)}
+                    fullWidth
+                    helperText={formik.touched.year && formik.errors.year}
+                    onBlur={formik.handleBlur}
+                    label="Ano do veículo"
+                    margin="normal"
+                    name="year"
+                    onChange={e => setYear(e.target.value)}
+                    value={year}
+                    variant="outlined"
+                    className='form-control'
+                  />
 
-              {/* Preço do veículo (price)*/}
-              <TextField
-                error={Boolean(formik.touched.price && formik.errors.price)}
-                fullWidth
-                helperText={formik.touched.price && formik.errors.price}
-                label="Preço do veículo"
-                margin="normal"
-                name="price"
-                onBlur={formik.handleBlur}
-                onChange={formik.handleChange}
-                type="price"
-                value={formik.values.price}
-                variant="outlined"
-              />
-              
-              <Box sx={{ py: 2 }}>
-                <Button
-                  color="primary"
-                  disabled={formik.isSubmitting}
-                  fullWidth
-                  size="large"
-                  type="submit"
-                  variant="contained"
-                >
-                  Cadastrar veículo
-                </Button>
-              </Box>
-            </form>
+                  {/* Kilometragem do veículo (kilometre) */}
+                  <TextField
+                    error={Boolean(formik.touched.kilometre && formik.errors.kilometre)}
+                    fullWidth
+                    helperText={formik.touched.kilometre && formik.errors.kilometre}
+                    onBlur={formik.handleBlur}
+                    label="Kilometragem do veículo"
+                    margin="normal"
+                    name="kilometre"
+                    onChange={e => setKilometre(e.target.value)}
+                    value={kilometre}
+                    variant="outlined"
+                    className='form-control'
+                  />
+
+                  {/* Cidade do veículo (city) */}
+                  <TextField
+                    error={Boolean(formik.touched.city && formik.errors.city)}
+                    fullWidth
+                    helperText={formik.touched.city && formik.errors.city}
+                    onBlur={formik.handleBlur}
+                    label="Cidade aonde o veículo se encontra"
+                    margin="normal"
+                    name="city"
+                    onChange={e => setCity(e.target.value)}
+                    value={city}
+                    variant="outlined"
+                    className='form-control'
+                  />
+
+                  {/* Preço do veículo (price) */}
+                  <TextField
+                    error={Boolean(formik.touched.price && formik.errors.price)}
+                    fullWidth
+                    helperText={formik.touched.price && formik.errors.price}
+                    onBlur={formik.handleBlur}
+                    label="Preço do veículo"
+                    margin="normal"
+                    name="price"
+                    onChange={e => setPrice(e.target.value)}
+                    value={price}
+                    variant="outlined"
+                    className='form-control'
+                  />
+                </div>
+
+                <Box sx={{ py: 2 }}>
+                  <Button
+                    color="primary"
+                    fullWidth
+                    size="large"
+                    type="submit"
+                    variant="contained"
+                  >
+                    Cadastrar veículo
+                  </Button>
+                </Box>
+
+              </form>
             </CardContent>
           </Card>
         </Container>

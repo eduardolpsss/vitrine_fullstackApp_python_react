@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { Box, MenuItem, MenuList, Popover, Typography } from '@mui/material';
 import { AuthContext } from '../contexts/auth-context';
 import { auth, ENABLE_AUTH } from '../lib/auth';
+import NextLink from 'next/link'
 
 export const AccountPopover = (props) => {
   const { anchorEl, onClose, open, ...other } = props;
@@ -71,13 +72,7 @@ export const AccountPopover = (props) => {
         }}
       >
         <Typography variant="overline">
-          Account
-        </Typography>
-        <Typography
-          color="text.secondary"
-          variant="body2"
-        >
-          John Doe
+          Admin account
         </Typography>
       </Box>
       <MenuList
@@ -93,9 +88,12 @@ export const AccountPopover = (props) => {
           }
         }}
       >
-        <MenuItem onClick={handleSignOut}>
-          Sign out
+        
+      <NextLink href={"/"}>
+        <MenuItem>
+          Sair
         </MenuItem>
+      </NextLink>
       </MenuList>
     </Popover>
   );

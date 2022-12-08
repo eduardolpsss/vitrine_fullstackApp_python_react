@@ -30,20 +30,6 @@ export const ProductListToolbar = (props) => (
       >
         Carros usados
       </Typography>
-      <Box sx={{ m: 1 }}>
-        <NextLink
-        href="/registerCars"
-        passHref
-        >
-          <Button
-            // disabled
-            color="primary"
-            variant="contained"
-          >
-            Adicionar carros
-          </Button>
-      </NextLink>
-      </Box>
     </Box>
     {/* <Box sx={{ mt: 3 }}>
       <Card>

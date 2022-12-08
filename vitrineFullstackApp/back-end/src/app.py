@@ -15,7 +15,7 @@ CORS(app)
 # Database
 db = mongo.db.cars
 
-# Routes
+# CRUD Routes
 @app.route('/cars', methods=['POST'])
 def createCars():
     id = db.insert_one({

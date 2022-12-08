@@ -59,7 +59,7 @@ export const DashboardNavbar = (props) => {
               </Box>
               </IconButton>
           </Box>
-          {/* <Box sx={{ flexGrow: 1 }} />
+          <Box sx={{ flexGrow: 1 }} />
           <Avatar
             onClick={() => setOpenAccountPopover(true)}
             ref={settingsRef}
@@ -69,10 +69,10 @@ export const DashboardNavbar = (props) => {
               width: 40,
               ml: 1
             }}
-            src="/static/images/avatars/avatar_1.png"
+            src="/static/images/avatars/"
           >
             <UserCircleIcon fontSize="small" />
-          </Avatar> */}
+          </Avatar>
         </Toolbar>
       </DashboardNavbarRoot>
       <AccountPopover

@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import { Box, Divider, Drawer, Typography, useMediaQuery } from '@mui/material';
 import HomeIcon from '@mui/icons-material/Home';
 import DirectionsCarIcon from '@mui/icons-material/DirectionsCar';
+import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings';
 import { NavItem } from './nav-item';
 
 const items = [
@@ -17,6 +18,11 @@ const items = [
     href: '/usedCars',
     icon: (<DirectionsCarIcon fontSize="small" />),
     title: 'Carros usados'
+  },
+  {
+    href: '/adminPage',
+    icon: (<AdminPanelSettingsIcon fontSize="small" />),
+    title: 'Administrador'
   }
 ];
 
