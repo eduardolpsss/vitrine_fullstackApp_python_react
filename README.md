@@ -1,4 +1,28 @@
 # vitrine_fullstack_python
+
+<div align="center">
+    <img src="https://user-images.githubusercontent.com/64506852/206640461-74c6e411-bd1b-46a0-886b-a9e26997336e.png"/>
+</div>
+
+<br>
+
+<div align="center">
+    <img src="https://user-images.githubusercontent.com/64506852/206640485-e0c1a4e3-a58c-455f-84ac-8d4e8a6a69bd.png"/>
+</div>
+
+<br>
+
+<div align="center">
+    <img src="https://user-images.githubusercontent.com/64506852/206640497-5724bc39-569a-4403-b55e-5fec27a2355e.png"/>
+</div>
+
+<br>
+
+<div align="center">
+    <img src="https://user-images.githubusercontent.com/64506852/206640506-e962a7ef-ef82-4607-9764-26f2b0a56d5f.png"/>
+</div>
+
+<br>
  
 RESTful API Fullstack desenvolvido utilizando Python no back-end, o microframework Flask provê um built-in development server. O front-end foi desenvolvido com React e o banco de dados utilizado foi o MongoDB.
 
