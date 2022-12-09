@@ -72,7 +72,7 @@ export const AccountPopover = (props) => {
         }}
       >
         <Typography variant="overline">
-          Admin account
+          Opções
         </Typography>
       </Box>
       <MenuList
@@ -89,11 +89,16 @@ export const AccountPopover = (props) => {
         }}
       >
         
-      <NextLink href={"/"}>
+      <NextLink href={"/adminLogin"}>
+        <MenuItem>
+          Página do administrador
+        </MenuItem>
+      </NextLink>
+      {/* <NextLink href={"/"}>
         <MenuItem>
           Sair
         </MenuItem>
-      </NextLink>
+      </NextLink> */}
       </MenuList>
     </Popover>
   );
