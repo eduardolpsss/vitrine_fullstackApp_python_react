@@ -1,10 +1,8 @@
 # vitrine_fullstack_python
  
-RESTful API Fullstack desenvolvido utilizando Python no back-end, o microframework Flask provê um built-in development server. O front-end foi desenvolvido com React.
+RESTful API Fullstack desenvolvido utilizando Python no back-end, o microframework Flask provê um built-in development server. O front-end foi desenvolvido com React e o banco de dados utilizado foi o MongoDB.
 
 ## Front-end
-
-![license](https://img.shields.io/badge/license-MIT-blue.svg)
 
 O front-end dessa aplicação foi desenvolvido utilizando  MUI's components, React e Next.js, para iniciar o servidor é só seguir os seguintes passos:
 
