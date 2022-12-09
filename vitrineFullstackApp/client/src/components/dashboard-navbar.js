@@ -9,6 +9,7 @@ import { Bell as BellIcon } from '../icons/bell';
 import { UserCircle as UserCircleIcon } from '../icons/user-circle';
 import { Users as UsersIcon } from '../icons/users';
 import { AccountPopover } from './account-popover';
+import SettingsIcon from '@mui/icons-material/Settings';
 
 const DashboardNavbarRoot = styled(AppBar)(({ theme }) => ({
   backgroundColor: theme.palette.background.paper,
@@ -60,7 +61,7 @@ export const DashboardNavbar = (props) => {
               </IconButton>
           </Box>
           <Box sx={{ flexGrow: 1 }} />
-          <Avatar
+          <IconButton
             onClick={() => setOpenAccountPopover(true)}
             ref={settingsRef}
             sx={{
@@ -69,10 +70,9 @@ export const DashboardNavbar = (props) => {
               width: 40,
               ml: 1
             }}
-            src="/static/images/avatars/"
           >
-            <UserCircleIcon fontSize="small" />
-          </Avatar>
+            <SettingsIcon fontSize="normal" />
+          </IconButton>
         </Toolbar>
       </DashboardNavbarRoot>
       <AccountPopover

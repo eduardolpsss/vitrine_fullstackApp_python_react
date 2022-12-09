@@ -13,7 +13,9 @@ export const LatestProducts = (props) => (
     <CardHeader
       title="Minhas redes sociais"
     />
+
     <Divider />
+    
     <List>
       <ListItem>
         <ListItemAvatar>
@@ -70,7 +72,7 @@ export const LatestProducts = (props) => (
             }}
           />
         </ListItemAvatar>
-        
+
         <NextLink
           href="https://eduardopontes.netlify.app/"
           passHref

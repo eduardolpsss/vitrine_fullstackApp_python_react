@@ -49,19 +49,37 @@ const Page = () => (
             mt: 3
           }}
         >
-            <NextLink
+          <NextLink
             href="/registerCars"
             passHref
-            >
+          >
             <Button
                 // disabled
                 color="primary"
                 variant="contained"
+                sx={{ mr: 1 }}
             >
                 Adicionar anúncios
             </Button>
-        </NextLink>
+          </NextLink>
+
+          <NextLink
+            href="/listOfAds"
+            passHref
+          >
+            <Button
+                // disabled
+                color="primary"
+                variant="contained"
+                sx={{ ml: 1 }}
+            >
+                Gerenciar anúncios
+            </Button>
+          </NextLink>
         </Box>
+{/* 
+        <br/>
+        <hr/> */}
       </Container>
     </Box>
   </>

@@ -18,12 +18,12 @@ const items = [
     href: '/usedCars',
     icon: (<DirectionsCarIcon fontSize="small" />),
     title: 'Carros usados'
-  },
-  {
-    href: '/adminPage',
-    icon: (<AdminPanelSettingsIcon fontSize="small" />),
-    title: 'Administrador'
   }
+  // {
+  //   href: '/adminPage',
+  //   icon: (<AdminPanelSettingsIcon fontSize="small" />),
+  //   title: 'Administrador'
+  // }
 ];
 
 export const DashboardSidebar = (props) => {

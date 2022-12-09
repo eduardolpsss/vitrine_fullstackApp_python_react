@@ -12,12 +12,15 @@ import {
   Typography,
   Card,
   CardContent,
+  Avatar
 } from '@mui/material';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { DashboardLayout } from '../components/dashboard-layout';
+import axios from 'axios';
 
 const Page = () => {
 
+  // const [selectedFile, setSelectedFile] = useState(null);
   const [media, setMedia] = useState('')
   const [title, setTitle] = useState('')
   const [year, setYear] = useState('')
@@ -25,44 +28,20 @@ const Page = () => {
   const [city, setCity] = useState('')
   const [price, setPrice] = useState('')
 
-  const formik = useFormik({
-    initialValues: {
-      kilometre: '',
-      title: '',
-      year: '',
-      city: '',
-      price: ''
-    },
-    validationSchema: Yup.object({
-      title: Yup
-        .string()
-        .max(255)
-        .required('É necessário informar um título para o anúncio.'),
-        year: Yup
-          .string()
-          .max(255)
-          .required('É necessário informar o ano do veículo.'),
-      kilometre: Yup
-        .string()
-        .max(255)
-        .required('É necessário informar a kilometragem do veículo.'),
-      city: Yup
-        .string()
-        .max(255)
-        .required('É necessário informar o local onde o veículo se encontra.'),
-      price: Yup
-        .string()
-        .max(255)
-        .required('É necessário informar o preço do veículo.')
-    })
-  })
+  // const handleFileSelect = (event) => {
+  //   console.log(event.target.files, "$$$$");
+  //   console.log(event.target.files[0], "$$$$");
+    
+  //   let media = event.target.files[0]
+    
+  //   this.setState({media: media})
+  // };
 
   const handleSubmit = async (e) => {
     e.preventDefault()
 
     const res = await fetch("http://localhost:5000/cars", {
-      method: "POST",
-      
+      method: "POST",    
       headers: {
         "Content-Type": "application/json"
       },
@@ -82,6 +61,7 @@ const Page = () => {
     console.log(data)
 
     window.location.reload(true);
+    // router.push("/institutions");
   }
 
   return (
@@ -133,27 +113,55 @@ const Page = () => {
                     </Typography>
                   </Box>
 
-                  {/* Media anúncio (media) */}
+                  {/* Box logo do anúncio */}
+                  {/* <Box
+                    sx={{
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center"
+                    }}
+                  >
+                  
+                    <Avatar
+                      src={ selectedFile ? URL.createObjectURL(selectedFile) : "https://via.placeholder.com/400.png"}
+
+                      sx={{
+                        height: 120,
+                        mb: 2,
+                        width: 120,
+                      }}
+                    />
+                  </Box> */}
+
+                  {/* Box adicionar imagem
+                  <Box
+                    sx={{
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                    }}
+                  >
+                    <Button variant="contained" component="label">
+                      Adicionar imagem para o anúncio
+                      <input hidden accept="image/*" multiple type="file" name="media" onChange={handleFileSelect}/>
+                    </Button>
+                  </Box> */}
+
+                  {/* URL imagem do anúncio (media) */}
                   <TextField
-                    error={Boolean(formik.touched.title && formik.errors.media)}
                     fullWidth
-                    helperText={formik.touched.title && formik.errors.media}
-                    onBlur={formik.handleBlur}
-                    label="URL de mídia"
+                    label="URL imagem do anúncio"
                     margin="normal"
                     name="media"
                     onChange={e => setMedia(e.target.value)}
                     value={media}
                     variant="outlined"
                     className='form-control'
-                  />                  
+                  />
 
                   {/* Título do anúncio (title) */}
                   <TextField
-                    error={Boolean(formik.touched.title && formik.errors.title)}
                     fullWidth
-                    helperText={formik.touched.title && formik.errors.title}
-                    onBlur={formik.handleBlur}
                     label="Título do anúncio"
                     margin="normal"
                     name="title"
@@ -165,10 +173,7 @@ const Page = () => {
 
                   {/* Ano do veículo (year) */}
                   <TextField
-                    error={Boolean(formik.touched.year && formik.errors.year)}
                     fullWidth
-                    helperText={formik.touched.year && formik.errors.year}
-                    onBlur={formik.handleBlur}
                     label="Ano do veículo"
                     margin="normal"
                     name="year"
@@ -180,10 +185,7 @@ const Page = () => {
 
                   {/* Kilometragem do veículo (kilometre) */}
                   <TextField
-                    error={Boolean(formik.touched.kilometre && formik.errors.kilometre)}
                     fullWidth
-                    helperText={formik.touched.kilometre && formik.errors.kilometre}
-                    onBlur={formik.handleBlur}
                     label="Kilometragem do veículo"
                     margin="normal"
                     name="kilometre"
@@ -195,10 +197,7 @@ const Page = () => {
 
                   {/* Cidade do veículo (city) */}
                   <TextField
-                    error={Boolean(formik.touched.city && formik.errors.city)}
                     fullWidth
-                    helperText={formik.touched.city && formik.errors.city}
-                    onBlur={formik.handleBlur}
                     label="Cidade aonde o veículo se encontra"
                     margin="normal"
                     name="city"
@@ -210,10 +209,7 @@ const Page = () => {
 
                   {/* Preço do veículo (price) */}
                   <TextField
-                    error={Boolean(formik.touched.price && formik.errors.price)}
                     fullWidth
-                    helperText={formik.touched.price && formik.errors.price}
-                    onBlur={formik.handleBlur}
                     label="Preço do veículo"
                     margin="normal"
                     name="price"
