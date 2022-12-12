@@ -37,16 +37,6 @@ O front-end dessa aplicação foi desenvolvido utilizando  MUI's components, Rea
 
 - Views em: `localhost:3000`
 
-## Back-end
-
-O back-end da aplicação foi desenvolvido utilizando Python com o microframework Flask para gerir um built-in development server, para iniciá-lo é necessário seguir os seguintes passos:
-
-- Na pasta do back-end: `.\venv\Scripts\activate`
-
-- Com os scripts ativos: `python .\src\app.py`
-
-- Views em: `http://localhost:5000/cars` ou `http://127.0.0.1:5000/cars`
-
 ## Banco de dados
 
 O banco de dados escolhido para o projeto foi o MongoDB, para ter uma melhor visualização dele é necessário o uso de sua interface, o MongoDB Compass, para uso no terminal foi utilizado o MongoDB Shell os dois podem ser baixados em: https://www.mongodb.com/try/download/tools.
@@ -73,3 +63,19 @@ A visualização pelo terminal, após conectado, é feita atraves dos comandos:
 
 - Para listar os objetos JSON que estão no banco de forma identada: `db.cars.find().pretty()`
 
+- Views em: `http://localhost:5000/cars` ou `http://127.0.0.1:5000/cars`
+
+## Back-end
+
+O back-end da aplicação foi desenvolvido utilizando Python com o microframework Flask para gerir um built-in development server, para iniciá-lo é necessário seguir os seguintes passos:
+
+
+- Na pasta do back-end instalar o ambiente virtual utilizando o PIP: `pip install virtualenv` ou no iOS com `pip3 install virtualenv`
+
+- Executar o ambiente virtual do back-end com o comando `virtualenv venv` para a criação da pasta
+
+- Na pasta do back-end utilizar o comando: `.\venv\Scripts\activate` ou `source .\venv\bin\activate` no iOS
+
+- Instalar as dependências utilizadas no back-end (Flask, flask_pymongo, flask_cors, jsonifys)
+
+- Com os scripts ativos: `python .\src\app.py`

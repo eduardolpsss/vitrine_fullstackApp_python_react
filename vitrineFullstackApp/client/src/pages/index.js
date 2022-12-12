@@ -43,7 +43,7 @@ const Page = () => (
             xl={3}
             xs={12}
           >
-            <LatestProducts sx={{ height: '100%' }} />
+            <LatestProducts/>
           </Grid>
         </Grid>
       </Container>
