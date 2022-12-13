@@ -41,7 +41,7 @@ export const CarCard = ({ car, ...rest }) => (
         color="textSecondary"
         variant="body1"
       >
-        {car.year} • {car.kilometre}km • {car.city}
+        {car.brand} • {car.year} • {car.kilometre}km • {car.city}
       </Typography>
     </CardContent>
 
