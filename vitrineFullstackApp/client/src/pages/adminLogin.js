@@ -12,19 +12,19 @@ import { DashboardLayout } from '../components/dashboard-layout';
 const Login = () => {
   const formik = useFormik({
     initialValues: {
-      email: 'demo@devias.io',
+      email: 'usuario@email.com',
       password: 'Password123'
     },
     validationSchema: Yup.object({
       email: Yup
         .string()
-        .email('Must be a valid email')
+        .email('E-mail inválido.')
         .max(255)
-        .required('Email is required'),
+        .required('Informe um e-mail.'),
       password: Yup
         .string()
         .max(255)
-        .required('Password is required')
+        .required('Informe uma senha.')
     }),
     onSubmit: () => {
       Router

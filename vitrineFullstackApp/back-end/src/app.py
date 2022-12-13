@@ -21,6 +21,7 @@ def createCars():
     id = db.insert_one({
         "media": request.json["media"],
         "title": request.json["title"],
+        "brand": request.json["brand"],
         "year": request.json["year"],
         "kilometre": request.json["kilometre"],
         "city": request.json["city"],
@@ -37,6 +38,7 @@ def getCars():
             "_id": str(ObjectId(doc["_id"])),
             "media": doc["media"],
             "title": doc["title"],
+            "brand": doc["brand"],
             "year": doc["year"],
             "kilometre": doc["kilometre"],
             "city": doc["city"],
@@ -52,6 +54,7 @@ def getCar(id):
         "_id": str(ObjectId(car["_id"])),
         "media": car["media"],
         "title": car["title"],
+        "brand": car["brand"],
         "year": car["year"],
         "kilometre": car["kilometre"],
         "city": car["city"],
@@ -68,6 +71,7 @@ def UpdateCar(id):
     db.update_one({"_id": ObjectId(id)}, {"$set": {
         "media": request.json["media"],
         "title": request.json["title"],
+        "brand": request.json["brand"],
         "year": request.json["year"],
         "kilometre": request.json["kilometre"],
         "city": request.json["city"],

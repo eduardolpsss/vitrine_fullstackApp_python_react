@@ -36,6 +36,7 @@ export const RegisterCars = () => {
   // const [selectedFile, setSelectedFile] = useState(null);
   const [media, setMedia] = useState('')
   const [title, setTitle] = useState('')
+  const [brand, setBrand] = useState('')
   const [year, setYear] = useState('')
   const [kilometre, setKilometre] = useState('')
   const [city, setCity] = useState('')
@@ -61,6 +62,7 @@ export const RegisterCars = () => {
        body: JSON.stringify({
          media,
          title,
+         brand,
          year,
          kilometre,
          city,
@@ -79,6 +81,7 @@ export const RegisterCars = () => {
        body: JSON.stringify({
          media,
          title,
+         brand,
          year,
          kilometre,
          city,
@@ -95,6 +98,7 @@ export const RegisterCars = () => {
     // Limpando campos 
     setMedia("")
     setTitle("")
+    setBrand("")
     setYear("")
     setKilometre("")
     setCity("")
@@ -127,6 +131,7 @@ export const RegisterCars = () => {
     
     setMedia(data.media)
     setTitle(data.title)
+    setBrand(data.brand)
     setYear(data.year)
     setKilometre(data.kilometre)
     setCity(data.city)
@@ -249,6 +254,18 @@ export const RegisterCars = () => {
                     className='form-control'
                   />
 
+                  {/* Marca do veículo (brand) */}
+                  <TextField
+                    fullWidth
+                    label="Marca do veículo"
+                    margin="normal"
+                    name="brand"
+                    onChange={e => setBrand(e.target.value)}
+                    value={brand}
+                    variant="outlined"
+                    className='form-control'
+                  />
+
                   {/* Ano do veículo (year) */}
                   <TextField
                     fullWidth
@@ -354,6 +371,7 @@ export const RegisterCars = () => {
                           <TableRow>
                             {/* <TableCell align="center">ID</TableCell> */}
                             <TableCell align="center">Titútlo anúncio</TableCell>
+                            <TableCell align="center">Marca</TableCell>
                             <TableCell align="center">Ano</TableCell>
                             <TableCell align="center">Kilometragem</TableCell>
                             <TableCell align="center">Localização</TableCell>
@@ -369,6 +387,7 @@ export const RegisterCars = () => {
                             >
                               {/* <TableCell>{car._id}</TableCell> */}
                               <TableCell>{car.title}</TableCell>
+                              <TableCell align="center">{car.brand}</TableCell>
                               <TableCell align="center">{car.year}</TableCell>
                               <TableCell align="center">{car.kilometre}</TableCell>
                               <TableCell align="center">{car.city}</TableCell>
