@@ -3,10 +3,8 @@ import NextLink from 'next/link';
 import Router from 'next/router';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
-import { Box, Button, Container, Card, CardContent, Grid, Link, TextField, Typography } from '@mui/material';
+import { Box, Button, Container, Card, CardContent, Link, TextField, Typography } from '@mui/material';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import { Facebook as FacebookIcon } from '../icons/facebook';
-import { Google as GoogleIcon } from '../icons/google';
 import { DashboardLayout } from '../components/dashboard-layout';
 
 const Login = () => {
