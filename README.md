@@ -76,6 +76,6 @@ O back-end da aplicação foi desenvolvido utilizando Python com o microframewor
 
 - Na pasta do back-end utilizar o comando: `.\venv\Scripts\activate` ou `source .\venv\bin\activate` no iOS
 
-- Instalar as dependências utilizadas no back-end (Flask, flask_pymongo, flask_cors, jsonifys)
+- Instalar as dependências utilizadas no back-end (Flask, flask_pymongo, flask_cors e jsonify)
 
 - Com os scripts ativos: `python .\src\app.py`
