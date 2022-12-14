@@ -24,6 +24,7 @@ def tokenReq(f):
     @wraps(f)
     def decorated(*args, **kwargs):
         if "Authorization" in request.headers:
+            token = request.headers["Authorization"]
             try:
                 jwt.decode(token, secret)
             except:
@@ -31,43 +32,44 @@ def tokenReq(f):
             return f(*args, **kwargs)
         else:
             return jsonify({"status": "fail", "message": "unauthorized"}), 401
-        return decorated
+    return decorated
 
 # Index route
 @app.route('/')
 def func():
     return "vitrine_fullstackApp_python_react back-end, bem vindo!", 200
 
-# Admin signup route
-@app.route('/cadastrarAdmin', methods=['POST'])
+
+@app.route('/addAdmin', methods=['POST'])
 def save_user():
     message = ""
     code = 500
     status = "fail"
     try:
         data = request.get_json()
-        check = db['users'].find({"email": data['email']})
-        if check.count() >= 1:
-            message = "Já existe um usuário cadastrado com esse e-mail"
-            code = 401
-            status = "fail"
-        else:
-            # Fazendo hashing da senha do admin para que ela não seja salva no banco de dados como foi inserida
-            data['password'] = bcrypt.generate_password_hash(data['password']).decode('utf-8')
-            data['created'] = datetime.now()
+        # Verificar e-mail comentado por problemas no check.count
+        # check = db['admins'].find({"email": data['email']})
+        # if check.count() >= 1:
+        #     message = "user with that email exists"
+        #     code = 401
+        #     status = "fail"
+        # else:
+        data['role'] = 'admin'
+        # Utilizando hashing na senha para que ela não seja visível no banco de dados 
+        data['password'] = bcrypt.generate_password_hash(data['password']).decode('utf-8')
+        data['created'] = datetime.now()
 
-            res = db["users"].insert_one(data) 
-            if res.acknowledged:
-                status = "successful"
-                message = "Usuário admin criado com sucesso no banco de dados."
-                code = 201
+        res = db["admins"].insert_one(data) 
+        if res.acknowledged:
+            status = "successful"
+            message = "Usuário admin cadastrado com sucesso."
+            code = 201
     except Exception as ex:
         message = f"{ex}"
         status = "fail"
         code = 500
     return jsonify({'status': status, "message": message}), 200
 
-# Rota de log-in do admin
 @app.route('/login', methods=['POST'])
 def login():
     message = ""
@@ -76,34 +78,34 @@ def login():
     status = "fail"
     try:
         data = request.get_json()
-        user = db['users'].find_one({"email": f'{data["email"]}'})
+        admin = db['admins'].find_one({"email": f'{data["email"]}'})
 
-        if user:
-            user['_id'] = str(user['_id'])
-            if user and bcrypt.check_password_hash(user['password'], data['password']):
+        if admin:
+            admin['_id'] = str(admin['_id'])
+            if admin and bcrypt.check_password_hash(admin['password'], data['password']):
                 time = datetime.utcnow() + timedelta(hours=24)
                 token = jwt.encode({
-                        "user": {
-                            "email": f"{user['email']}",
-                            "id": f"{user['_id']}",
+                        "admin": {
+                            "email": f"{admin['email']}",
+                            "id": f"{admin['_id']}",
                         },
                         "exp": time
                     },secret)
 
-                del user['password']
+                # del admin['password']
 
-                message = f"user authenticated"
+                message = f"admin authenticated"
                 code = 200
                 status = "successful"
-                res_data['token'] = token.decode('utf-8')
-                res_data['user'] = user
+                res_data['token'] = token
+                res_data['admin'] = admin
 
             else:
-                message = "Senha errada"
+                message = "wrong password"
                 code = 401
                 status = "fail"
         else:
-            message = "Informaçoes de log-in inválidas"
+            message = "invalid login details"
             code = 401
             status = "fail"
 
@@ -111,7 +113,8 @@ def login():
         message = f"{ex}"
         code = 500
         status = "fail"
-    return jsonify({'status': status, "data": res_data, "message":message}), 
+    return jsonify({'status': status, "data": res_data, "message":message}), code
+
 
 # Cars CRUD Routes
 @app.route('/cars', methods=['POST'])
