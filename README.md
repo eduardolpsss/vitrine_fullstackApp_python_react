@@ -80,4 +80,4 @@ O back-end da aplicação foi desenvolvido utilizando Python com o microframewor
 
 - Com os scripts ativos: `python .\src\app.py`
 
-* O cadastro de usuários admin devem ser feitos pela rota do back-end `/cadastrarAdmin` utilizando Insomnia ou Postman como JSON raw.
+* O cadastro de usuários admin devem ser feitos pela rota do back-end `/addAdmin` utilizando Insomnia ou Postman como JSON raw.
