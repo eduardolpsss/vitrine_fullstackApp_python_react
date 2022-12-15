@@ -1,3 +1,4 @@
+import React, { useState, useEffect } from 'react';
 import Head from 'next/head';
 import NextLink from 'next/link';
 import Router from 'next/router';
@@ -7,7 +8,17 @@ import { Box, Button, Container, Card, CardContent, Link, TextField, Typography 
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { DashboardLayout } from '../components/dashboard-layout';
 
-const Login = () => {
+const Login = ()=> {
+
+  const [data, setData] = useState([{}])
+
+  const [id, setId] = useState('')
+  // const [selectedFile, setSelectedFile] = useState(null);
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [username, setUsername] = useState('')
+  const [token, setToken] = useState('')
+
   const formik = useFormik({
     initialValues: {
       email: 'usuario@email.com',
@@ -60,6 +71,7 @@ const Login = () => {
 
           <Card>
             <CardContent>
+
               <form onSubmit={formik.handleSubmit}>
                 <Box sx={{ my: 3 }}>
                   <Typography
@@ -76,7 +88,7 @@ const Login = () => {
                     Insira as informações para logar como administrador do sistema.
                   </Typography>
                 </Box>
-              
+
                 <TextField
                   error={Boolean(formik.touched.email && formik.errors.email)}
                   fullWidth

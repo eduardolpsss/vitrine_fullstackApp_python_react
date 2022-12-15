@@ -39,9 +39,8 @@ def tokenReq(f):
 def func():
     return "vitrine_fullstackApp_python_react back-end, bem vindo!", 200
 
-
-@app.route('/addAdmin', methods=['POST'])
-def save_user():
+@app.route('/admin', methods=['POST'])
+def createAdmins():
     message = ""
     code = 500
     status = "fail"
@@ -54,11 +53,11 @@ def save_user():
         #     code = 401
         #     status = "fail"
         # else:
-        data['role'] = 'admin'
         # Utilizando hashing na senha para que ela não seja visível no banco de dados 
+        data['role'] = 'admin'
         data['password'] = bcrypt.generate_password_hash(data['password']).decode('utf-8')
         data['created'] = datetime.now()
-
+        
         res = db["admins"].insert_one(data) 
         if res.acknowledged:
             status = "successful"
@@ -69,6 +68,26 @@ def save_user():
         status = "fail"
         code = 500
     return jsonify({'status': status, "message": message}), 200
+
+@app.route('/admin', methods=['GET'])
+def getLogin():
+    message = ""
+    res_data = {}
+    code = 500
+    status = "fail"
+
+    admin = []
+
+    for doc in db.admins.find(): 
+        admin.append({
+            "_id": str(ObjectId(doc["_id"])),
+            "email": doc["email"],
+            "password": doc["password"],
+            "username": doc["username"],
+            "role": doc["role"],
+            "created": doc["created"]
+        })
+    return  jsonify(admin)
 
 @app.route('/login', methods=['POST'])
 def login():
@@ -93,19 +112,25 @@ def login():
                     },secret)
 
                 # del admin['password']
-
-                message = f"admin authenticated"
+                 
+                message = f"Administrador do sistema autenticado com sucesso."
                 code = 200
                 status = "successful"
+                res_data['email'] = admin['email']
+                res_data['username'] = admin['username']
+                res_data['role'] = admin['role']
                 res_data['token'] = token
-                res_data['admin'] = admin
+
+                res_data['admin'] = admin 
+
+                db["adminLog"].insert_one(res_data)
 
             else:
-                message = "wrong password"
+                message = "Senha incorreta."
                 code = 401
                 status = "fail"
         else:
-            message = "invalid login details"
+            message = "Informações de login inválidas."
             code = 401
             status = "fail"
 
@@ -115,6 +140,24 @@ def login():
         status = "fail"
     return jsonify({'status': status, "data": res_data, "message":message}), code
 
+@app.route('/login', methods=['GET'])
+def getAdminLogInfos():
+    message = ""
+    res_data = {}
+    code = 500
+    status = "fail"
+
+    adminLogInfos = []
+
+    for doc in db.adminLog.find(): 
+        adminLogInfos.append({
+            "_id": str(ObjectId(doc["_id"])),
+            "email": doc["email"],
+            "username": doc["username"],
+            "token": doc["token"],
+            "role": doc["role"]
+        })
+    return  jsonify(adminLogInfos)
 
 # Cars CRUD Routes
 @app.route('/cars', methods=['POST'])
