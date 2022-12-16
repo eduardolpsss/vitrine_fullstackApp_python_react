@@ -8,56 +8,64 @@ import { Box, Button, Container, Card, CardContent, Link, TextField, Typography 
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { DashboardLayout } from '../components/dashboard-layout';
 
-const Login = ()=> {
+const RegisterAdmin = ()=> {
 
-  const [res_data, setData] = useState([{}])
+  const [data, setData] = useState([{}])
 
+  const [id, setId] = useState('')
+  // const [selectedFile, setSelectedFile] = useState(null);
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-  // const [token, setToken] = useState('')
-  // const [role, setRole] = useState('')
+  const [username, setUsername] = useState('')
+  const [token, setToken] = useState('')
+  const [role, setRole] = useState('')
 
   useEffect(() => {
-    fetch("http://127.0.0.1:5000/login").then(
+    fetch("http://localhost:5000/admin").then(
         res => res.json()
     ).then(
-        res_data => {
-          setData(res_data)
+        data => {
+          setData(data)
         }
     )
   }, [])
 
+  // const getData = async () => {
+  //   const res = await fetch("http://localhost:5000/admin");
+  //   const data = await res.json();
+  //   setData(data);
+  // };
+
   const handleSubmit = async (e) => {
     e.preventDefault()
 
-    const res = await fetch("http://127.0.0.1:5000/login", {
+    const res = await fetch("http://localhost:5000/admin", {
       method: "POST",    
       headers: {
         "Content-Type": "application/json"
-    },
-    body: JSON.stringify({
+      },
+      body: JSON.stringify({
         email,
-        password
+        password,
+        username
+      })
     })
-  })
 
-  const res_data = await res.json();
+    alert("Usuário administrador do sistema criado com sucesso!")
+    const data = await res.json();
 
-  if (res_data.code == "200") {
-    window.location.href = '/adminPage'
-  }else {
-      alert(res_data.message)
-      
-      // Limpando campos 
-      setEmail("")
-      setPassword("")
-    }
+    window.location.href = '/adminLogin'
+
+    // Limpando campos 
+    setEmail("")
+    setPassword("")
+    setUsername("")
   }
 
   return (
     <>
       <Head>
-        <title>Admin login | Verzel Cars</title>
+        <title>Cadastro de admins | Verzel Cars</title>
       </Head>
       <Box
         component="main"
@@ -70,7 +78,7 @@ const Login = ()=> {
       >
         <Container maxWidth="sm">
           <NextLink
-            href="/"
+            href="/adminLogin"
             passHref
           >
             <Button
@@ -89,20 +97,14 @@ const Login = ()=> {
                     color="textPrimary"
                     variant="h4"
                   >
-                    Logar como admin
+                    Crie uma conta admin
                   </Typography>
                   <Typography
                     color="textSecondary"
                     gutterBottom
                     variant="body2"
                   >
-                    Insira as informações para logar como administrador do sistema. Caso não possua uma conta admin ainda, você pode se cadastrar clicando {" "} 
-                    <NextLink
-                      href="/registerAdmin"
-                      passHref
-                    >
-                      <a style={{textDecoration: "none"}}>aqui</a>
-                    </NextLink>.
+                    Insira as informações para cadastrar um administrador do sistema.
                   </Typography>
                 </Box>
 
@@ -128,6 +130,17 @@ const Login = ()=> {
                   onChange={e => setPassword(e.target.value)}
                 />
 
+                <TextField
+                  fullWidth
+                  label="Username"
+                  margin="normal"
+                  name="username"
+                  type="text"
+                  variant="outlined"
+                  value={username}
+                  onChange={e => setUsername(e.target.value)}
+                />
+
                 <Box sx={{ py: 2 }}>
                   <Button
                     color="primary"
@@ -136,7 +149,7 @@ const Login = ()=> {
                     type="submit"
                     variant="contained"
                   >
-                    Entrar
+                    Salvar
                   </Button>
                 </Box>
               </form>
@@ -148,10 +161,10 @@ const Login = ()=> {
   );
 };
 
-Login.getLayout = (Login) => (
+RegisterAdmin.getLayout = (RegisterAdmin) => (
   <DashboardLayout>
-    {Login}
+    {RegisterAdmin}
   </DashboardLayout>
 );
 
-export default Login;
+export default RegisterAdmin;

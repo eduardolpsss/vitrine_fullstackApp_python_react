@@ -80,7 +80,7 @@ def getLogin():
 
     for doc in db.admins.find(): 
         admin.append({
-            "_id": str(ObjectId(doc["_id"])),
+            # "_id": str(ObjectId(doc["_id"])),
             "email": doc["email"],
             "password": doc["password"],
             "username": doc["username"],
@@ -123,8 +123,6 @@ def login():
 
                 res_data['admin'] = admin 
 
-                db["adminLog"].insert_one(res_data)
-
             else:
                 message = "Senha incorreta."
                 code = 401
@@ -138,7 +136,7 @@ def login():
         message = f"{ex}"
         code = 500
         status = "fail"
-    return jsonify({'status': status, "data": res_data, "message":message}), code
+    return jsonify({'status': status, "data": res_data, "message":message, "code":code})
 
 @app.route('/login', methods=['GET'])
 def getAdminLogInfos():

@@ -33,7 +33,7 @@ const Page = () => (
             xl={9}
             xs={12}
           >
-            <About />
+            <About/>
           </Grid>
           
           <Grid

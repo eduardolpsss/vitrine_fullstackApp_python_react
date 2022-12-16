@@ -27,10 +27,15 @@ import IconButton from '@mui/material/IconButton';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import axios from 'axios';
+import Condition from 'yup/lib/Condition';
 
 export const RegisterCars = () => {
   
   const [data, setData] = useState([{}])
+
+  const [res_data, setResData] = useState([{}])
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
 
   const [id, setId] = useState('')
   // const [selectedFile, setSelectedFile] = useState(null);
@@ -106,13 +111,18 @@ export const RegisterCars = () => {
   }
 
   useEffect(() => {
-    fetch("http://localhost:5000/cars").then(
+    if (Condition) {
+      fetch("http://localhost:5000/cars").then(
         res => res.json()
-    ).then(
+      ).then(
         data => {
             setData(data)
         }
-    )
+      )
+    } else {
+      alert("Apenas administradores do sistema autenticados podem ter acesso a essa página.")
+      window.location.href = '/adminLogin'
+    }
   }, [])
 
   const getData = async () => {
@@ -173,6 +183,17 @@ export const RegisterCars = () => {
       >
         <Container maxWidth="false">
 
+        <NextLink
+          href="/adminLogin"
+          passHref
+        >
+          <Button
+            component="a"
+            startIcon={<ArrowBackIcon fontSize="small" />}
+          >
+            Voltar
+          </Button>
+        </NextLink>
 
         <Box sx={{ m: 1 }}>
             <Typography
