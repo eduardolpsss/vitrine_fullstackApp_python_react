@@ -1,9 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Head from 'next/head';
 import NextLink from 'next/link';
-import Router from 'next/router';
-import { useFormik } from 'formik';
-import * as Yup from 'yup';
 import {
   Box,
   Button,
@@ -23,7 +20,6 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import IconButton from '@mui/material/IconButton';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import axios from 'axios';
@@ -31,6 +27,10 @@ import axios from 'axios';
 export const RegisterCars = () => {
   
   const [data, setData] = useState([{}])
+
+  const [res_data, setResData] = useState([{}])
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
 
   const [id, setId] = useState('')
   // const [selectedFile, setSelectedFile] = useState(null);
@@ -107,11 +107,11 @@ export const RegisterCars = () => {
 
   useEffect(() => {
     fetch("http://localhost:5000/cars").then(
-        res => res.json()
+      res => res.json()
     ).then(
-        data => {
-            setData(data)
-        }
+      data => {
+        setData(data)
+      }
     )
   }, [])
 
@@ -173,6 +173,17 @@ export const RegisterCars = () => {
       >
         <Container maxWidth="false">
 
+        <NextLink
+          href="/adminLogin"
+          passHref
+        >
+          <Button
+            component="a"
+            startIcon={<ArrowBackIcon fontSize="small" />}
+          >
+            Voltar
+          </Button>
+        </NextLink>
 
         <Box sx={{ m: 1 }}>
             <Typography
