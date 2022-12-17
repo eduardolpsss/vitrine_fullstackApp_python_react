@@ -1,9 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Head from 'next/head';
 import NextLink from 'next/link';
-import Router from 'next/router';
-import { useFormik } from 'formik';
-import * as Yup from 'yup';
 import { Box, Button, Container, Card, CardContent, Link, TextField, Typography } from '@mui/material';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { DashboardLayout } from '../components/dashboard-layout';
@@ -14,8 +11,8 @@ const Login = ()=> {
 
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-  // const [token, setToken] = useState('')
-  // const [role, setRole] = useState('')
+  const token = ''
+  const role = ''
 
   useEffect(() => {
     fetch("http://127.0.0.1:5000/login").then(
@@ -27,7 +24,7 @@ const Login = ()=> {
     )
   }, [])
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e, token, role) => {
     e.preventDefault()
 
     const res = await fetch("http://127.0.0.1:5000/login", {
@@ -44,6 +41,7 @@ const Login = ()=> {
   const res_data = await res.json();
 
   if (res_data.code == "200") {
+    alert(res_data.message + `\n\nToken JWT: ${res_data.data.token}`)
     window.location.href = '/adminPage'
   }else {
       alert(res_data.message)
@@ -52,6 +50,8 @@ const Login = ()=> {
       setEmail("")
       setPassword("")
     }
+
+    return token, role
   }
 
   return (

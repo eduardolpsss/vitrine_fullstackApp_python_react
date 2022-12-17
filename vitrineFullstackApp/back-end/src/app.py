@@ -94,6 +94,9 @@ def login():
     message = ""
     res_data = {}
     code = 500
+    
+    role = ''
+
     status = "fail"
     try:
         data = request.get_json()
@@ -116,12 +119,12 @@ def login():
                 message = f"Administrador do sistema autenticado com sucesso."
                 code = 200
                 status = "successful"
-                res_data['email'] = admin['email']
-                res_data['username'] = admin['username']
+
                 res_data['role'] = admin['role']
                 res_data['token'] = token
 
-                res_data['admin'] = admin 
+                # res_data['admin'] = admin
+                res_data = db["admins"].insert_one(res_data['role']) 
 
             else:
                 message = "Senha incorreta."
@@ -147,11 +150,8 @@ def getAdminLogInfos():
 
     adminLogInfos = []
 
-    for doc in db.adminLog.find(): 
+    for doc in db.login.find(): 
         adminLogInfos.append({
-            "_id": str(ObjectId(doc["_id"])),
-            "email": doc["email"],
-            "username": doc["username"],
             "token": doc["token"],
             "role": doc["role"]
         })

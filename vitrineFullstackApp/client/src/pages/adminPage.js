@@ -1,9 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Head from 'next/head';
 import NextLink from 'next/link';
-import Router from 'next/router';
-import { useFormik } from 'formik';
-import * as Yup from 'yup';
 import {
   Box,
   Button,
@@ -23,11 +20,9 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import IconButton from '@mui/material/IconButton';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import axios from 'axios';
-import Condition from 'yup/lib/Condition';
 
 export const RegisterCars = () => {
   
@@ -111,18 +106,13 @@ export const RegisterCars = () => {
   }
 
   useEffect(() => {
-    if (Condition) {
-      fetch("http://localhost:5000/cars").then(
-        res => res.json()
-      ).then(
-        data => {
-            setData(data)
-        }
-      )
-    } else {
-      alert("Apenas administradores do sistema autenticados podem ter acesso a essa página.")
-      window.location.href = '/adminLogin'
-    }
+    fetch("http://localhost:5000/cars").then(
+      res => res.json()
+    ).then(
+      data => {
+        setData(data)
+      }
+    )
   }, [])
 
   const getData = async () => {
