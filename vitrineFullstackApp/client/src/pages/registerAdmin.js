@@ -132,7 +132,7 @@ const RegisterAdmin = ()=> {
 
                 <TextField
                   fullWidth
-                  label="Username"
+                  label="Nome de usuário"
                   margin="normal"
                   name="username"
                   type="text"
@@ -149,7 +149,7 @@ const RegisterAdmin = ()=> {
                     type="submit"
                     variant="contained"
                   >
-                    Salvar
+                    Registrar
                   </Button>
                 </Box>
               </form>

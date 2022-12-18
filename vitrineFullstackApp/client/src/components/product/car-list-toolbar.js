@@ -13,7 +13,7 @@ import { Search as SearchIcon } from '../../icons/search';
 import { Upload as UploadIcon } from '../../icons/upload';
 import NextLink from 'next/link'
 
-export const ProductListToolbar = (props) => (
+export const CarListToolbar = (props) => (
   <Box {...props}>
     <Box
       sx={{

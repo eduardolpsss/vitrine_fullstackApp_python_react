@@ -41,6 +41,7 @@ const Login = ()=> {
   const res_data = await res.json();
 
   if (res_data.code == "200") {
+    // Alerta apenas para informar o token JWT (tirar caso entre em produção)
     alert(res_data.message + `\n\nToken JWT: ${res_data.data.token}`)
     window.location.href = '/adminPage'
   }else {

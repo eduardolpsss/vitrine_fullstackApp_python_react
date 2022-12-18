@@ -8,7 +8,7 @@ import {
 } from '@mui/material';
 import NextLink from 'next/link'
 
-export const LatestProducts = (props) => (
+export const SocialMedia = (props) => (
   <Card {...props}>
     <CardHeader
       title="Minhas redes sociais"

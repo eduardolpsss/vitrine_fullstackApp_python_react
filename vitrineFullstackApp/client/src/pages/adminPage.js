@@ -24,6 +24,8 @@ import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import axios from 'axios';
 
+
+
 export const RegisterCars = () => {
   
   const [data, setData] = useState([{}])
@@ -159,7 +161,7 @@ export const RegisterCars = () => {
           Página do administrador | Verzel Cars
         </title>
       </Head>
-      
+        
       <Box
         component="main"
         sx={{
@@ -172,257 +174,274 @@ export const RegisterCars = () => {
         }}
       >
         <Container maxWidth="false">
-
-        <NextLink
-          href="/adminLogin"
-          passHref
-        >
-          <Button
-            component="a"
-            startIcon={<ArrowBackIcon fontSize="small" />}
+          <NextLink
+            href="/adminLogin"
+            passHref
           >
-            Voltar
-          </Button>
-        </NextLink>
-
-        <Box sx={{ m: 1 }}>
-            <Typography
-              color="textPrimary"
-              variant="h4"
+            <Button
+              component="a"
+              startIcon={<ArrowBackIcon fontSize="small" />}
             >
-              Cadastro de carros usados
-            </Typography>
-
-            <Typography
-              color="textSecondary"
-              gutterBottom
-              variant="body2"
-            >
-              Insira as informações para cadastrar um veículo.
-            </Typography>
-          </Box>
-
-          <Card>
-            <CardContent>
-              <form onSubmit={handleSubmit}>
-                <div className='form-group'>
-
-                  {/* Box logo do anúncio */}
-                  {/* <Box
-                    sx={{
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center"
-                    }}
-                  >
-                  
-                    <Avatar
-                      src={ selectedFile ? URL.createObjectURL(selectedFile) : "https://via.placeholder.com/400.png"}
-
-                      sx={{
-                        height: 120,
-                        mb: 2,
-                        width: 120,
-                      }}
-                    />
-                  </Box> */}
-
-                  {/* Box adicionar imagem
-                  <Box
-                    sx={{
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                    }}
-                  >
-                    <Button variant="contained" component="label">
-                      Adicionar imagem para o anúncio
-                      <input hidden accept="image/*" multiple type="file" name="media" onChange={handleFileSelect}/>
-                    </Button>
-                  </Box> */}
-
-                  {/* URL imagem do anúncio (media) */}
-                  <TextField
-                    fullWidth
-                    label="URL imagem do anúncio"
-                    margin="normal"
-                    name="media"
-                    onChange={e => setMedia(e.target.value)}
-                    value={media}
-                    variant="outlined"
-                    className='form-control'
-                  />
-
-                  {/* Título do anúncio (title) */}
-                  <TextField
-                    fullWidth
-                    label="Título do anúncio"
-                    margin="normal"
-                    name="title"
-                    onChange={e => setTitle(e.target.value)}
-                    value={title}
-                    variant="outlined"
-                    className='form-control'
-                  />
-
-                  {/* Marca do veículo (brand) */}
-                  <TextField
-                    fullWidth
-                    label="Marca do veículo"
-                    margin="normal"
-                    name="brand"
-                    onChange={e => setBrand(e.target.value)}
-                    value={brand}
-                    variant="outlined"
-                    className='form-control'
-                  />
-
-                  {/* Ano do veículo (year) */}
-                  <TextField
-                    fullWidth
-                    label="Ano do veículo"
-                    margin="normal"
-                    name="year"
-                    onChange={e => setYear(e.target.value)}
-                    value={year}
-                    variant="outlined"
-                    className='form-control'
-                  />
-
-                  {/* Kilometragem do veículo (kilometre) */}
-                  <TextField
-                    fullWidth
-                    label="Kilometragem do veículo"
-                    margin="normal"
-                    name="kilometre"
-                    onChange={e => setKilometre(e.target.value)}
-                    value={kilometre}
-                    variant="outlined"
-                    className='form-control'
-                  />
-
-                  {/* Cidade do veículo (city) */}
-                  <TextField
-                    fullWidth
-                    label="Cidade aonde o veículo se encontra"
-                    margin="normal"
-                    name="city"
-                    onChange={e => setCity(e.target.value)}
-                    value={city}
-                    variant="outlined"
-                    className='form-control'
-                  />
-
-                  {/* Preço do veículo (price) */}
-                  <TextField
-                    fullWidth
-                    label="Preço do veículo"
-                    margin="normal"
-                    name="price"
-                    onChange={e => setPrice(e.target.value)}
-                    value={price}
-                    variant="outlined"
-                    className='form-control'
-                  />
-                </div>
-
-                <Box sx={{ py: 2 }}>
-                  <Button
-                    color="primary"
-                    fullWidth
-                    size="large"
-                    type="submit"
-                    variant="outlined"                  
-                  >
-                    Cadastrar veículo
-                  </Button>
-                </Box>
-
-              </form>
-            </CardContent>
-          </Card>
+              Voltar
+            </Button>
+          </NextLink>
         </Container>
       </Box>
-      
+
       {/* Gerenciador de anúncios */}
       <Box
-            component="main"
-            sx={{
-                flexGrow: 1,
-                mt: 5,
-                mb: 8
-            }}
-        >
-            <Container maxWidth={false}>
+        component="main"
+        sx={{
+          flexGrow: 1,
+          mt: 5,
+          mb: 8
+        }}
+      >
+        <Container maxWidth={false}>
+          <Grid
+            container
+            spacing={3}
+          >
+            <Grid
+              item
+              lg={4}
+              md={6}
+              xl={3}
+              xs={12}
+            >
+              <Box sx={{ m: 1 }}>
+                <Typography
+                  color="textPrimary"
+                  variant="h4"
+                >
+                  Cadastro de carros usados
+                </Typography>
 
-                <Box sx={{ m: 1 }}>
-                  <Typography
-                    color="textPrimary"
-                    variant="h4"
-                  >
-                    Gerenciar anúncios ativos
-                  </Typography>
+                <Typography
+                  color="textSecondary"
+                  gutterBottom
+                  variant="body2"
+                >
+                  Insira as informações para cadastrar um anúncio de um veículo.
+                </Typography>
+              </Box>
 
-                  <Typography
-                    color="textSecondary"
-                    gutterBottom
-                    variant="body2"
-                  >
-                    Edite ou delete anúncios ativos no banco de dados.
-                  </Typography>
-                </Box>
+              <Card>
+                <CardContent>
+                  <form onSubmit={handleSubmit}>
+                    <div className='form-group'>
+                      {/* Box logo do anúncio */}
+                      {/* <Box
+                        sx={{
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "center"
+                        }}
+                      >
+                          
+                        <Avatar
+                          src={ selectedFile ? URL.createObjectURL(selectedFile) : "https://via.placeholder.com/400.png"}
 
-                <Box sx={{ pt: 3 }}>
-                  <Grid
-                    container
-                  >
-                    <TableContainer component={Paper} sx={{mt: 3}}>
-                      <Table sx={{ minWidth: 650 }} aria-label="simple table">
-                        <TableHead>
-                          <TableRow>
-                            {/* <TableCell align="center">ID</TableCell> */}
-                            <TableCell align="center">Titútlo anúncio</TableCell>
-                            <TableCell align="center">Marca</TableCell>
-                            <TableCell align="center">Ano</TableCell>
-                            <TableCell align="center">Kilometragem</TableCell>
-                            <TableCell align="center">Localização</TableCell>
-                            <TableCell align="center">Preço</TableCell>
-                            <TableCell align="center" colSpan={2}>Opções</TableCell>
-                          </TableRow>
-                        </TableHead>
-                        
-                        <TableBody>
-                          {data.map((car) => (
-                            <TableRow
-                              key={data._id} 
-                            >
-                              {/* <TableCell>{car._id}</TableCell> */}
-                              <TableCell>{car.title}</TableCell>
-                              <TableCell align="center">{car.brand}</TableCell>
-                              <TableCell align="center">{car.year}</TableCell>
-                              <TableCell align="center">{car.kilometre}</TableCell>
-                              <TableCell align="center">{car.city}</TableCell>
-                              <TableCell align="center">{car.price}</TableCell>
-                              <TableCell align="center">
-                                <Button color="success" variant="outlined" endIcon={<EditIcon/>} onClick={(e) => editCar(car._id)}>
-                                  Editar
-                                </Button>
-                              </TableCell>
-                              <TableCell align="center">
-                                <Button color="error" variant="outlined" endIcon={<DeleteIcon />} onClick={(e) => deleteCar(car.title, car._id)}>
-                                  Deletar
-                                </Button>
-                              </TableCell>
-                            </TableRow>
-                          ))}
-                        </TableBody>
-                      </Table>
-                    </TableContainer>
-                  </Grid>
-                </Box>
-            </Container>
-        </Box>
-    </>
+                          sx={{
+                            height: 120,
+                            mb: 2,
+                            width: 120,
+                          }}
+                        />
+                      </Box> */}
+
+                      {/* Box adicionar imagem
+                      <Box
+                        sx={{
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                        }}
+                      >
+                      <Button variant="contained" component="label">
+                        Adicionar imagem para o anúncio
+                        <input hidden accept="image/*" multiple type="file" name="media" onChange={handleFileSelect}/>
+                      </Button>
+                    </Box> */}
+
+                    {/* URL imagem do anúncio (media) */}
+                    <TextField
+                      fullWidth
+                      label="URL imagem do anúncio"
+                      margin="normal"
+                      name="media"
+                      onChange={e => setMedia(e.target.value)}
+                      value={media}
+                      variant="outlined"
+                      className='form-control'
+                    />
+
+                    {/* Título do anúncio (title) */}
+                    <TextField
+                      fullWidth
+                      label="Título do anúncio"
+                      margin="normal"
+                      name="title"
+                      onChange={e => setTitle(e.target.value)}
+                      value={title}
+                      variant="outlined"
+                      className='form-control'
+                    />
+
+                    {/* Marca do veículo (brand) */}
+                    <TextField
+                      fullWidth
+                      label="Marca do veículo"
+                      margin="normal"
+                      name="brand"
+                      onChange={e => setBrand(e.target.value)}
+                      value={brand}
+                      variant="outlined"
+                      className='form-control'
+                    />
+
+                    {/* Ano do veículo (year) */}
+                    <TextField
+                      fullWidth
+                      label="Ano do veículo"
+                      margin="normal"
+                      name="year"
+                      onChange={e => setYear(e.target.value)}
+                      value={year}
+                      variant="outlined"
+                      className='form-control'
+                    />
+
+                    {/* Kilometragem do veículo (kilometre) */}
+                    <TextField
+                      fullWidth
+                      label="Kilometragem do veículo"
+                      margin="normal"
+                      name="kilometre"
+                      onChange={e => setKilometre(e.target.value)}
+                      value={kilometre}
+                      variant="outlined"
+                      className='form-control'
+                    />
+                      
+                    {/* Cidade do veículo (city) */}
+                    <TextField
+                      fullWidth
+                      label="Cidade aonde o veículo se encontra"
+                      margin="normal"
+                      name="city"
+                      onChange={e => setCity(e.target.value)}
+                      value={city}
+                      variant="outlined"
+                      className='form-control'
+                    />
+
+                    {/* Preço do veículo (price) */}
+                    <TextField
+                      fullWidth
+                      label="Preço do veículo"
+                      margin="normal"
+                      name="price"
+                      onChange={e => setPrice(e.target.value)}
+                      value={price}
+                      variant="outlined"
+                      className='form-control'
+                    />
+                  </div>
+
+                  <Box sx={{ py: 2 }}>
+                    <Button
+                      color="primary"
+                      fullWidth
+                      size="large"
+                      type="submit"
+                      variant="contained"                  
+                    >
+                      Cadastrar veículo
+                    </Button>
+                  </Box>
+                </form>
+              </CardContent>
+            </Card>
+          </Grid>
+                
+          <Grid
+            item
+            lg={8}
+            md={12}
+            xl={9}
+            xs={12}
+          >
+            <Box sx={{ m: 1 }}>
+              <Typography
+                color="textPrimary"
+                variant="h4"
+              >
+                Gerenciar anúncios ativos
+              </Typography>
+
+              <Typography
+                color="textSecondary"
+                gutterBottom
+                variant="body2"
+              >
+                Edite ou delete anúncios de veículos ativos no banco de dados.
+              </Typography>
+            </Box>
+
+            <Box sx={{ pt: 3 }}>
+              <Grid
+                 container
+              >
+                <TableContainer component={Paper} sx={{mt: 3}}>
+                  <Table sx={{ minWidth: 650 }} aria-label="simple table">
+                    <TableHead>
+                      <TableRow>
+                        {/* <TableCell align="center">ID</TableCell> */}
+                        <TableCell align="center">Titútlo anúncio</TableCell>
+                        <TableCell align="center">Marca</TableCell>
+                        <TableCell align="center">Ano</TableCell>
+                        <TableCell align="center">Kilometragem</TableCell>
+                        <TableCell align="center">Localização</TableCell>
+                        <TableCell align="center">Preço</TableCell>
+                        <TableCell align="center" colSpan={2}>Opções</TableCell>
+                      </TableRow>
+                    </TableHead>
+                          
+                    <TableBody>
+                      {data.map((car) => (
+                        <TableRow
+                          key={data._id} 
+                        >
+                          {/* <TableCell>{car._id}</TableCell> */}
+                          <TableCell>{car.title}</TableCell>
+                          <TableCell align="center">{car.brand}</TableCell>
+                          <TableCell align="center">{car.year}</TableCell>
+                          <TableCell align="center">{car.kilometre}</TableCell>
+                          <TableCell align="center">{car.city}</TableCell>
+                          <TableCell align="center">{car.price}</TableCell>
+                          <TableCell align="center">
+                          <Button color="success" variant="outlined" endIcon={<EditIcon/>} onClick={(e) => editCar(car._id)}>
+                              Editar
+                            </Button>
+                          </TableCell>
+                          <TableCell align="center">
+                            <Button color="error" variant="outlined" endIcon={<DeleteIcon />} onClick={(e) => deleteCar(car.title, car._id)}>
+                              Deletar
+                            </Button>
+                          </TableCell>
+                        </TableRow>
+                      ))}
+                    </TableBody>
+                  </Table>
+                </TableContainer>
+              </Grid>
+            </Box>
+          </Grid>
+        </Grid>
+      </Container>
+    </Box>
+  </>
   );
 };
 
