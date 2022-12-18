@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Head from 'next/head';
-import { Box, Container, Grid, Card, CardContent } from '@mui/material';
+import { Box, Container, Grid, Card, CardContent, CircularProgress } from '@mui/material';
 import { CarListToolbar } from '../components/product/car-list-toolbar';
 import { CarCard } from '../components/product/car-card';
 import { DashboardLayout } from '../components/dashboard-layout';
@@ -10,14 +10,13 @@ function Page(props) {
   const [data, setData] = useState([{}])
 
   useEffect(() => {
-    fetch("http://localhost:5000/cars").then(
+     fetch("http://localhost:5000/cars").then(
         res => res.json()
-    ).then(
+     ).then(
         data => {
             setData(data)
-            console.log(data)
         }
-    )
+     )
   }, [])  
 
   return (
@@ -44,8 +43,16 @@ function Page(props) {
                         spacing={3}
                     >
                         {(typeof data === 'undefined')? (
-                            <p>Loading...</p>
-                        ): (
+                            <Box
+                                sx={{
+                                    display: 'flex',
+                                    justifyContent: 'center',
+                                    textAlign: 'center'
+                                }}
+                            >
+                                <CircularProgress fullwidth></CircularProgress>
+                            </Box>
+                        ):(                            
                             data.map((car, i) =>(
                             <Grid
                                 item
