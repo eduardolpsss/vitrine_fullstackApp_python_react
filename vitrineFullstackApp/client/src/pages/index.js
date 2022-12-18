@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Head from 'next/head';
 import { Box, Container, Grid } from '@mui/material';
-import { LatestProducts } from '../components/dashboard/latest-products';
+import { SocialMedia } from '../components/dashboard/social-media';
 import { About } from '../components/dashboard/about';
 import { DashboardLayout } from '../components/dashboard-layout';
 
@@ -43,7 +43,7 @@ const Page = () => (
             xl={3}
             xs={12}
           >
-            <LatestProducts/>
+            <SocialMedia/>
           </Grid>
         </Grid>
       </Container>

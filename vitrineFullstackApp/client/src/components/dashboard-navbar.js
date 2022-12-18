@@ -8,7 +8,7 @@ import DirectionsCarIcon from '@mui/icons-material/DirectionsCar';
 import { Bell as BellIcon } from '../icons/bell';
 import { UserCircle as UserCircleIcon } from '../icons/user-circle';
 import { Users as UsersIcon } from '../icons/users';
-import { AccountPopover } from './account-popover';
+import { OptionsPopover } from './options-popover';
 import SettingsIcon from '@mui/icons-material/Settings';
 
 const DashboardNavbarRoot = styled(AppBar)(({ theme }) => ({
@@ -19,7 +19,7 @@ const DashboardNavbarRoot = styled(AppBar)(({ theme }) => ({
 export const DashboardNavbar = (props) => {
   const { onSidebarOpen, ...other } = props;
   const settingsRef = useRef(null);
-  const [openAccountPopover, setOpenAccountPopover] = useState(false);
+  const [openOptionsPopover, setOpenOptionsPopover] = useState(false);
 
   return (
     <>
@@ -62,7 +62,7 @@ export const DashboardNavbar = (props) => {
           </Box>
           <Box sx={{ flexGrow: 1 }} />
           <IconButton
-            onClick={() => setOpenAccountPopover(true)}
+            onClick={() => setOpenOptionsPopover(true)}
             ref={settingsRef}
             sx={{
               cursor: 'pointer',
@@ -75,10 +75,10 @@ export const DashboardNavbar = (props) => {
           </IconButton>
         </Toolbar>
       </DashboardNavbarRoot>
-      <AccountPopover
+      <OptionsPopover
         anchorEl={settingsRef.current}
-        open={openAccountPopover}
-        onClose={() => setOpenAccountPopover(false)}
+        open={openOptionsPopover}
+        onClose={() => setOpenOptionsPopover(false)}
       />
     </>
   );

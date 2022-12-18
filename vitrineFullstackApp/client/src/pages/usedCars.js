@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import Head from 'next/head';
 import { Box, Container, Grid, Card, CardContent } from '@mui/material';
-import { ProductListToolbar } from '../components/product/product-list-toolbar';
-import { CarCard } from '../components/product/product-card';
+import { CarListToolbar } from '../components/product/car-list-toolbar';
+import { CarCard } from '../components/product/car-card';
 import { DashboardLayout } from '../components/dashboard-layout';
 
 function Page(props) {
@@ -36,7 +36,7 @@ function Page(props) {
             }}
         >
             <Container maxWidth={false}>
-                <ProductListToolbar />
+                <CarListToolbar />
 
                 <Box sx={{ pt: 3 }}>
                     <Grid

@@ -24,7 +24,7 @@
 
 <br>
  
-RESTful API Fullstack desenvolvido utilizando Python no back-end, o microframework Flask provê um built-in development server. O front-end foi desenvolvido com React e o banco de dados utilizado foi o MongoDB.
+RESTful API Fullstack desenvolvido utilizando Python no back-end, o microframework Flask provê um built-in development server. O front-end foi desenvolvido com React utilizando a biblioteca de componentes MUI, o projeto conta também com o Next.js e Axios API Reference para as requisições. No que se refere a banco de dados, foi utilizado o MongoDB junto com suas ferramentas de visualização.
 
 ## Front-end
 
@@ -37,6 +37,21 @@ O front-end dessa aplicação foi desenvolvido utilizando  MUI's components, Rea
 
 - Views em: `localhost:3000`
 
+## Back-end
+
+O back-end da aplicação foi desenvolvido utilizando Python com o microframework Flask para gerir um built-in development server, para iniciá-lo é necessário seguir os seguintes passos:
+
+
+- Na pasta do back-end instalar o ambiente virtual utilizando o PIP: `pip install virtualenv` ou no iOS com `pip3 install virtualenv`
+
+- Executar o ambiente virtual do back-end com o comando `virtualenv venv` para a criação da pasta
+
+- Na pasta do back-end utilizar o comando: `.\venv\Scripts\activate` ou `source ./venv/bin/activate` no iOS
+
+- Instalar as dependências utilizadas no back-end (Flask, flask_pymongo, flask_cors, datetime, flask_bcrypt, pyjwt, bcrypt e jsonify)
+
+- Com os scripts ativos: `python .\src\app.py`
+
 ## Banco de dados
 
 O banco de dados escolhido para o projeto foi o MongoDB, para ter uma melhor visualização dele é necessário o uso de sua interface, o MongoDB Compass, para uso no terminal foi utilizado o MongoDB Shell os dois podem ser baixados em: https://www.mongodb.com/try/download/tools.
@@ -45,13 +60,13 @@ Para visualizar o banco de dados no MongoDb Compass só é necessário colocar o
 
 - Views em: `mongodb://localhost/pythonReactCarsData`
 
-É necessário definir as varíaveis de ambiente do sistema para uso no terminal se a utilização ocorrer no Windows, o caminho da pasta bin das instalações, tanto do Compass como do Shell do banco devem ser incluídos na variável Path do sistema, são elas (exempli com o caminho padrão que vem no instalador da Microsoft):
+É necessário definir as varíaveis de ambiente do sistema para uso no terminal se a utilização ocorrer no Windows, o caminho da pasta bin das instalações, tanto do Compass como do Shell do banco devem ser incluídos na variável Path do sistema, são elas (exemplo com o caminho padrão que vem no instalador da Microsoft):
 
 - C:\Program Files\MongoDB\Server\6.0\bin (servidor)
 
 - C:\Program Files\MongoDB\Tools\100\bin (Shell)
 
-- C:\Program Files\mongosh\bin (comandos)
+- C:\Program Files\mongosh\bin
 
 A visualização pelo terminal, após conectado, é feita atraves dos comandos:
 
@@ -64,20 +79,3 @@ A visualização pelo terminal, após conectado, é feita atraves dos comandos:
 - Para listar os objetos JSON que estão no banco de forma identada: `db.cars.find().pretty()`
 
 - Views em: `http://localhost:5000/cars` ou `http://127.0.0.1:5000/cars`
-
-## Back-end
-
-O back-end da aplicação foi desenvolvido utilizando Python com o microframework Flask para gerir um built-in development server, para iniciá-lo é necessário seguir os seguintes passos:
-
-
-- Na pasta do back-end instalar o ambiente virtual utilizando o PIP: `pip install virtualenv` ou no iOS com `pip3 install virtualenv`
-
-- Executar o ambiente virtual do back-end com o comando `virtualenv venv` para a criação da pasta
-
-- Na pasta do back-end utilizar o comando: `.\venv\Scripts\activate` ou `source .\venv\bin\activate` no iOS
-
-- Instalar as dependências utilizadas no back-end (Flask, flask_pymongo, flask_cors, datetime, flask_bcrypt, pyjwt, bcrypt e jsonify)
-
-- Com os scripts ativos: `python .\src\app.py`
-
-* O cadastro de usuários admin devem ser feitos pela rota do back-end `/addAdmin` utilizando Insomnia ou Postman como JSON raw.

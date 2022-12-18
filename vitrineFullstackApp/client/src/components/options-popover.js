@@ -6,7 +6,7 @@ import { AuthContext } from '../contexts/auth-context';
 import { auth, ENABLE_AUTH } from '../lib/auth';
 import NextLink from 'next/link'
 
-export const AccountPopover = (props) => {
+export const OptionsPopover = (props) => {
   const { anchorEl, onClose, open, ...other } = props;
   const authContext = useContext(AuthContext);
 
@@ -104,7 +104,7 @@ export const AccountPopover = (props) => {
   );
 };
 
-AccountPopover.propTypes = {
+OptionsPopover.propTypes = {
   anchorEl: PropTypes.any,
   onClose: PropTypes.func,
   open: PropTypes.bool.isRequired
