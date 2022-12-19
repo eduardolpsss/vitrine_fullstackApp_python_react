@@ -69,7 +69,7 @@ def createAdmins():
         code = 500
     return jsonify({'status': status, "message": message}), 200
 
-@app.route('/admin', methods=['GET'])
+@app.route('/admins', methods=['GET'])
 def getLogin():
     message = ""
     res_data = {}
