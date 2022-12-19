@@ -13,13 +13,7 @@
 <br>
 
 <div align="center">
-    <img src="https://user-images.githubusercontent.com/64506852/206640497-5724bc39-569a-4403-b55e-5fec27a2355e.png"/>
-</div>
-
-<br>
-
-<div align="center">
-    <img src="https://user-images.githubusercontent.com/64506852/206640506-e962a7ef-ef82-4607-9764-26f2b0a56d5f.png"/>
+    <img src="https://user-images.githubusercontent.com/64506852/208492323-3218eb4e-d442-4f4a-92cd-79638c0f437e.png"/>
 </div>
 
 <br>
